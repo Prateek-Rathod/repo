@@ -22,13 +22,13 @@ const Contact = () => {
 
           <p className='text-gray-500'>
             Tel: (415) 555-0132 <br />
-            Email: support@forevershop.com
+            Email: support@BuyBuddiesshop.com
           </p>
 
-          <p className='font-semibold text-xl'>Careers at Forever</p>
+          <p className='font-semibold text-xl'>Careers at BuyBuddies</p>
           <p className='text-gray-500'>
             Join a passionate, innovative team that’s redefining the future of online shopping. 
-            Explore opportunities to grow, create, and lead with us at Forever.
+            Explore opportunities to grow, create, and lead with us at BuyBuddies.
           </p>
 
           <button className='border border-black px-8 py-4 text-sm hover:bg-black hover:text-white transition-all duration-500'>

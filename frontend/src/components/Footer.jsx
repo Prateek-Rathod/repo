@@ -11,7 +11,7 @@ const Footer = () => {
           <div>
             <img src={assets.logo} className="mb-4 w-24" alt="Logo" />
             <p className="w-full md:w-2/3 text-gray-600">
-              Elevate your style with ForeverYou – bringing you the latest trends with comfort and elegance.
+              Elevate your style with BuyBuddiesYou – bringing you the latest trends with comfort and elegance.
             </p>
           </div>
 
@@ -31,7 +31,7 @@ const Footer = () => {
             <p className="text-lg font-semibold mb-4 text-gray-800">Get in Touch</p>
             <ul className="flex flex-col gap-2">
               <li className="hover:text-gray-900 cursor-pointer transition">+91-212-456-7890</li>
-              <li className="hover:text-gray-900 cursor-pointer transition">connect@foreveryou.com</li>
+              <li className="hover:text-gray-900 cursor-pointer transition">connect@BuyBuddiesyou.com</li>
             </ul>
 
             {/* Social Media Icons */}
@@ -45,7 +45,7 @@ const Footer = () => {
 
         {/* Copyright Section */}
         <div className="text-center text-gray-600 text-xs mt-20">
-          © {new Date().getFullYear()} ForeverYou. All rights reserved.
+          © {new Date().getFullYear()} BuyBuddiesYou. All rights reserved.
         </div>
       </div>
     </footer>

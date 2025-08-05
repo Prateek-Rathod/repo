@@ -15,8 +15,8 @@ const About = () => {
 
         <div className='flex flex-col justify-center gap-6 md:w-2/4 text-gray-600'>
           <p>
-            Welcome to <b className='text-gray-800'>Forever</b> – your trusted destination for effortless and enjoyable online shopping. 
-            At Forever, we are committed to providing a seamless experience by offering a wide range of quality products, fast delivery, and reliable service you can count on.
+            Welcome to <b className='text-gray-800'>BuyBuddies</b> – your trusted destination for effortless and enjoyable online shopping. 
+            At BuyBuddies, we are committed to providing a seamless experience by offering a wide range of quality products, fast delivery, and reliable service you can count on.
           </p>
 
           <p>
@@ -26,13 +26,13 @@ const About = () => {
 
           <b className='text-gray-800'>Our Mission</b>
           <p>
-            At Forever, our mission is to make online shopping simple, smart, and accessible. 
+            At BuyBuddies, our mission is to make online shopping simple, smart, and accessible. 
             We believe shopping should be more than just a transaction — it should be a satisfying experience tailored to your needs. 
             That’s why we focus on user-friendly design, exceptional support, and fast, secure deliveries.
           </p>
 
           <p>
-            Thank you for making <b className='text-gray-800'>Forever</b> part of your lifestyle. 
+            Thank you for making <b className='text-gray-800'>BuyBuddies</b> part of your lifestyle. 
             We’re here to support your everyday moments, your celebrations, and everything in between.
           </p>
         </div>
@@ -46,7 +46,7 @@ const About = () => {
         <div className='border px-10 md:px-16 sm:py-20 flex flex-col gap-5'>
           <b>Quality Assurance:</b>
           <p className='text-gray-600'>
-            Every product listed on Forever undergoes strict quality checks to ensure it meets our high standards. 
+            Every product listed on BuyBuddies undergoes strict quality checks to ensure it meets our high standards. 
             We only partner with verified suppliers, so you can shop confidently knowing that what you see is what you get — durable, functional, and stylish.
           </p>
         </div>
@@ -63,7 +63,7 @@ const About = () => {
           <b>Exceptional Customer Service:</b>
           <p className='text-gray-600'>
             Our friendly and responsive support team is always ready to help. Whether you have a question, need assistance with an order, or want to share feedback — we're here for you. 
-            At Forever, we believe in building relationships, not just making sales.
+            At BuyBuddies, we believe in building relationships, not just making sales.
           </p>
         </div>
       </div>
