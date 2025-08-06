@@ -6,7 +6,7 @@ import ProductItems from '../components/ProductItems';
 import { useLocation } from 'react-router-dom';
 
 const Collection = () => {
-  const { products, search, showSearch } = useContext(ShopContext);
+  const { products, search, setSearch } = useContext(ShopContext);
   const [showFilter, setShowFilter] = useState(false);
   const [filterProducts, setFilterProducts] = useState([]);
   const [category, setCategory] = useState([]);
@@ -16,11 +16,14 @@ const Collection = () => {
 
   const location = useLocation();
 
-  // Read category & subcategory from URL query params when page loads
+  const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+
+  // Read category/subcategory/search from URL query params when page loads
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const cat = params.get('category');
     const subCat = params.get('subcategory');
+    const searchQuery = params.get('search');
 
     if (cat) {
       setCategory([capitalize(cat)]);
@@ -28,21 +31,27 @@ const Collection = () => {
     if (subCat) {
       setSubCategory([capitalize(subCat)]);
     }
+    if (searchQuery) {
+      setSearch(searchQuery); // Update search state in context
+      // If search matches a category name, auto-select that category
+      const normalizedSearch = searchQuery.toLowerCase();
+      if (['men', 'women', 'kids', 'sports'].includes(normalizedSearch)) {
+        setCategory([capitalize(normalizedSearch)]);
+      }
+    }
   }, [location.search]);
-
-  const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
   const toggleCategory = (e) => {
     const value = e.target.value;
-    setCategory(prev =>
-      prev.includes(value) ? prev.filter(item => item !== value) : [...prev, value]
+    setCategory((prev) =>
+      prev.includes(value) ? prev.filter((item) => item !== value) : [...prev, value]
     );
   };
 
   const toggleSubCategory = (e) => {
     const value = e.target.value;
-    setSubCategory(prev =>
-      prev.includes(value) ? prev.filter(item => item !== value) : [...prev, value]
+    setSubCategory((prev) =>
+      prev.includes(value) ? prev.filter((item) => item !== value) : [...prev, value]
     );
   };
 
@@ -50,29 +59,31 @@ const Collection = () => {
     let productscopy = [...products];
 
     // Search filter
-    if (showSearch && search) {
-      productscopy = productscopy.filter(item =>
-        item.name.toLowerCase().includes(search.toLowerCase())
+    if (search) {
+      productscopy = productscopy.filter((item) =>
+        item.name.toLowerCase().includes(search.toLowerCase()) ||
+        item.category.toLowerCase().includes(search.toLowerCase()) ||
+        item.subCategory.toLowerCase().includes(search.toLowerCase())
       );
     }
 
     // Category filter
     if (category.length > 0) {
-      productscopy = productscopy.filter(item =>
+      productscopy = productscopy.filter((item) =>
         category.includes(item.category)
       );
     }
 
     // Subcategory filter
     if (subCategory.length > 0) {
-      productscopy = productscopy.filter(item =>
+      productscopy = productscopy.filter((item) =>
         subCategory.includes(item.subCategory)
       );
     }
 
     // Price range filter
     productscopy = productscopy.filter(
-      item => item.price >= priceRange[0] && item.price <= priceRange[1]
+      (item) => item.price >= priceRange[0] && item.price <= priceRange[1]
     );
 
     setFilterProducts(productscopy);
@@ -88,7 +99,6 @@ const Collection = () => {
         sortedList.sort((a, b) => b.price - a.price);
         break;
       default:
-        // Relevant = keep as is
         break;
     }
     setFilterProducts(sortedList);
@@ -102,7 +112,7 @@ const Collection = () => {
   // Apply filter whenever filters/search change
   useEffect(() => {
     applyFilter();
-  }, [category, subCategory, priceRange, search, showSearch, products]);
+  }, [category, subCategory, priceRange, search, products]);
 
   // Sort whenever sortType changes
   useEffect(() => {

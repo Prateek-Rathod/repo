@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ShopContext } from '../context/ShopContext';
 import { assets } from '../assets/assets';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const SearchBar = () => {
     const { search, setSearch, showSearch, setShowSearch } = useContext(ShopContext);
     const location = useLocation();
+    const navigate = useNavigate();
     const [visible, setVisible] = useState(false);
 
     useEffect(() => {
@@ -15,6 +16,21 @@ const SearchBar = () => {
             setVisible(false);
         }
     }, [location]);
+
+    // Handle search action
+    const handleSearch = () => {
+        if (search.trim() !== '') {
+            navigate(`/collection?search=${encodeURIComponent(search.trim())}`);
+            setShowSearch(false); // optional: hide search after navigation
+        }
+    };
+
+    // Handle Enter key press
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleSearch();
+        }
+    };
 
     return showSearch && visible ? (
         <div className="border-t border-b bg-gradient-to-r from-gray-100 via-white to-gray-100 py-4 shadow-sm">
@@ -26,8 +42,14 @@ const SearchBar = () => {
                         placeholder="Search for products..."
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
+                        onKeyDown={handleKeyDown} // press Enter to search
                     />
-                    <img src={assets.search_icon} className="w-5 h-5 ml-2 opacity-60" alt="search" />
+                    <img
+                        src={assets.search_icon}
+                        className="w-5 h-5 ml-2 opacity-60 cursor-pointer"
+                        alt="search"
+                        onClick={handleSearch} // click icon to search
+                    />
                     <img
                         onClick={() => setShowSearch(false)}
                         src={assets.cross_icon}
